@@ -2,7 +2,7 @@
 <html lang="en" >
 <head>
   <meta charset="utf-8">
-  <title>jQuery.observeHashChange.js Example Page</title>
+  <title>jQuery.observeHashChange.js</title>
   <!--[if IE lte 8]>
   <script>
     document.createElement("header");
@@ -13,9 +13,119 @@
     document.createElement("details");
   </script>
   <![endif]-->
+
+  <style>
+header, nav, content, section, aside, details { display: block; }
+
+body {
+  background: #369;
+  font-family: 'Trebuchet MS', Helvetica, Arial, sans-serif;
+}
+#page {
+  max-width: 50em;
+  min-width: 80%;
+  border: 2px solid #333;
+  margin: 1em auto;
+  padding: 1em;
+  background: white;
+  color: #333;
+  position: relative;
+}
+
+h1 {
+  margin-top: 0;
+}
+
+article section aside {
+  float: right;
+  width: 20%;
+  background: #ccc;
+  margin-left: 0.5em;
+  padding: 0.5em;
+  font-size: 0.8em;
+}
+
+#hashcontainer {
+  width: 7em;
+  position: fixed;
+  bottom: 0.5em;
+  right: 0;
+  background: #369;
+  border: 2px solid white;
+  margin: 1em;
+  padding: 1em;
+  color: white;
+  text-align: right;
+  opacity: 0.8;
+}
+
+
+nav {
+  width: 7em;
+  background: #fc3;
+  border: 1px solid white;
+  opacity: 0.8;
+  position: fixed;
+  top: 0.5em;
+  right: 0;
+  margin: 1em;
+  padding: 1em;
+  overflow: hidden;
+  text-align: right;
+}
+
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li {
+  margin: 0;
+  padding: 0;
+}
+
+pre {
+  font-family: Monaco, Consolas, monospace;
+  font-size: 0.8em;
+  margin: 0 1em;
+  background: #eee;
+  border: 1px solid #ccc;
+}
+
+.console_output {
+  font-family: Monaco, Consolas, monospace;
+  font-size: 0.8em;
+  list-style-type: none;
+  border-top: 1px solid #666;
+  margin: 1em;
+  padding: 0;
+}
+.console_output li {
+  border-bottom: 1px solid #666;
+  color: #333;
+  margin: 0;
+  padding: 0.2em;
+  padding-left: 0.5em;
+}
+
+a {
+  color: #369;
+  text-decoration: none;
+  font-weight: bold;
+  padding-left: 3px;
+  padding-right: 3px;
+}
+a:hover, a:active, a:focus {
+  color: white;
+  background: #369;
+}
+  </style>
+
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.min.js"></script>
   <script src="jquery.observehashchange.js"></script>
-  <script id="example_code">
+  <script id="example_code1">
     jQuery(function($) {
       function updateHash() {
         if (document.location.hash == "") {
@@ -24,100 +134,248 @@
         else {
           $("#currenthash").html(document.location.hash);
         }
+        $("#hashcontainer").effect("highlight");
       };
 
       $(window).hashchange(updateHash);
       updateHash();
     });
   </script>
+  <script id="example_code2">
+    jQuery(function($) {
+      if (window.console && console.log) {
+        $(window).hashchange(function(e, data) {
+          console.log("before change:", data.before);
+          console.log("after change (current value):", data.after);
+        });
+      }
+    });
+  </script>
 </head>
 <body>
-  <header>
-    <h1>jQuery.observeHashChange.js Example Page</h1>
-    <p>
-      Version 0.1 &middot; 
-      2009-07-05 &middot; 
-      <a href="http://www.nach-vorne.eu/">Gregor Schmidt</a> &middot;
-      <a href="http://www.finn.de/">Finn GmbH</a>
-    </p>
-  </header>
-  <nav>
-    <ul>
-      <li><a href="#introduction">Introduction</a></li>
-      <li><a href="#usage">Usage</a></li>
-      <li><a href="#download">Download</a></li>
-      <li><a href="#issues">Known Issues</a></li>
-      <li><a href="#license">License</a></li>
-    </ul>
-  </nav>
-  <aside>
-    <details>
-      <legend>Current Hash in Location Bar:</legend>
-      <code id="currenthash"></code>
-    </details>
-  </aside>
-  <article>
-    <section id="introduction">
-      <h2>Introduction</h2>
-      <p>
-        ...
-      </p>
-    </section>
-    <section id="usage">
-      <h2>Usage</h2>
-      
-      <p>
-        Simply include the <code>jquery.observehashchange.js</code> File into
-        your jQuery powered site and you are ready to go. Each time, the 
-        <code>document.location.hash</code> is changed, a custom jQuery event
-        is triggered. In order to get notifications, you should bind your
-        custom event handlers.
-      </p>
-      <pre>
-        &lt;script&gt;
-          jQuery(window).hashchange(function() {
-            // location hash has been updated
-            // ...
-          });
-        &lt;/script&gt;
-      </pre>
-
-      <p>
-        This site uses the plugin to show the current hash in the box
-        on the right hand side. It works with the following piece of code:
-      </p>
-
-      <pre class="example_code">
-      </pre>
-      <script>
-        jQuery(".example_code").html(jQuery("#example_code").text());
-      </script>
-
-      <section>
-        <h3>Options</h3>
+  <div id="page">
+    <header>
+      <h1>jQuery.observeHashChange.js</h1>
+      <small>
+        Version 0.1 •
+        2009-07-05 •
+        <a href="http://www.nach-vorne.eu/">Gregor Schmidt</a> •
+        <a href="http://www.finn.de/" title="Finnlabs • software architects">
+          Finn GmbH
+        </a>
+      </small>
+    </header>
+    <nav>
+      <ul>
+        <li><a href="#summary">Summary</a></li>
+        <li><a href="#introduction">Introduction</a></li>
+        <li><a href="#usage">Usage</a></li>
+        <li><a href="#download">Download</a></li>
+        <li><a href="#issues">Known Issues</a></li>
+        <li><a href="#license">License</a></li>
+      </ul>
+    </nav>
+    <article>
+      <section id="summary">
+        <h2>Executive Summary</h2>
         <p>
-          ...
+          Want to get notified whenever the <code>location.hash</code> changes
+          on your jQuery powered site. With the help of this plugin, reacting
+          on this event becomes a piece-of-cake.
+        </p>
+        <pre>
+
+    jQuery(window).hashchange(function() {
+      // location hash has been updated
+      // ...
+    });
+        </pre>
+        <p>... and your done &mdash; cross-browser, future-proof.</p>
+        <p>
+          If you are already convinced, 
+          <a href="#download">proceed to download</a>.
         </p>
       </section>
-    </section>
-    <section id="download">
-      <h2>Download</h2>
-      <p>
-        ...
-      </p>
-    </section>
-    <section id="issues">
-      <h2>Known Issues</h2>
-      <p>
-        ...
-      </p>
-    </section>
-    <section id="license">
-      <h2>License</h2>
-      <p>
-        ...
-      </p>
-    </section>
-  </article>
+      <section id="introduction">
+        <h2>Introduction</h2>
+        <p>
+          In the current JavaScript/DOM-Scripting world there is no built-in
+          mechanism to observe changes to the <code>document.location</code>.
+          In general, a change will imply a page reload so this is not a 
+          big deal, but when using anchors and in page link targets, a 
+          change in this location represents a browser history event, but 
+          your javascript application will not know.
+        </p>
+        <p>
+          Changes to the <code>location.hash</code> may be triggered, by 
+          clicking on page internal links, by setting the <code>hash</code>
+          programmatically via JavaScript or by navigating within the browser's
+          history. Especially the latter is hard to observe.
+        </p>
+        <p>
+          HTML 5 will most likely have a 
+          <a href="http://dev.w3.org/html5/spec/Overview.html#handler-window-onhashchange">
+            <code>window.onhashchange</code>
+          </a> method, 
+          <a href="http://www.pathf.com/blogs/2008/03/ie8-html5-and-a/">
+            IE8 already has it</a>.
+          The goal of this plugin is to provide a uniform, jQuery interface 
+          to register event handlers for this special event today.
+        </p>
+        <aside>If I understand it correctly, Zach Leatherman's solution on
+          &laquo;<a href="http://www.zachleat.com/web/2008/08/21/onhashchange-without-setinterval/">Emulating onhashchange without setInterval</a>&raquo; 
+          would not work here.
+        </aside>
+        <p>
+          Therefore two different implementation strategies are used. If the
+          browser already supports, <code>onhashchange</code>, this event
+          handling mechanism is used and a jQuery-like API is wrapped around
+          it. If the browser does not support this functionality yet, a 
+          setInterval-based approach is used to simulate the desired behaviour.
+          <br />
+          So basically this plugin provides a future-proof, easy-to-use way,
+          always using the most powerful technique available.
+        </p>
+      </section>
+      <section id="usage">
+        <h2>Usage</h2>
+        
+        <p>
+          Simply include the <code>jquery.observehashchange.js</code> file into
+          your jQuery powered site and you are ready to go. Each time, the 
+          <code>document.location.hash</code> is changed, a custom jQuery event
+          is triggered. In order to get notifications, you should bind your
+          custom event handlers to the window object:
+        </p>
+        <pre>
+
+    &lt;script&gt;
+      jQuery(window).hashchange(function() {
+        // location hash has been updated
+        // ...
+      });
+    &lt;/script&gt;
+        </pre>
+
+        <p>
+          This site uses the plugin to show the current hash in the box
+          on the right hand side. It works with the following piece of code:
+        </p>
+
+        <pre class="example_code1">
+        </pre>
+        <script>
+          jQuery(".example_code1").html(jQuery("#example_code1").text());
+        </script>
+
+        <section>
+          <h3>Options</h3>
+          <p>
+            The event handler will receive additional information for your
+            convenience. Namely it is an object containing the information
+            about the actual change. The following code...
+          </p>
+
+          <pre class="example_code2">
+          </pre>
+          <script>
+            jQuery(".example_code2").html(jQuery("#example_code2").text());
+          </script>
+
+          <p>
+            ... might trigger the following output ...
+          </p>
+
+          <ol class="console_output">
+            <li>before change: </li>
+            <li>after change (current value): #introduction</li>
+            <li>before change: #introduction</li>
+            <li>after change (current value): #download</li>
+          </ol>
+        </section>
+      </section>
+      <section id="download">
+        <h2>Download</h2>
+        <p>
+          You may always find the current version of the 
+          <code>jquery.observeHashChange.js</code>-Plugin on 
+          <a href="#todo" title="GitHub Project Page of jquery.observeHashChange.js">GitHub Project Page</a>.
+          <ul>
+            <li><a href="#todo">Minified JavaScript</a></li>
+            <li>
+              <a href="#todo">
+                Release Tarball including this example page
+              </a>
+            </li>
+          </ul>
+        </p>
+      </section>
+      <section id="issues">
+        <h2>Known Issues</h2>
+        <p>
+          If the browser does not natively support the 
+          <code>window.onhashchange</code> a workaround is used, to simulate 
+          the desired behavior. This workaround implies some disadvantages.
+        </p>
+        <h3>Computational Overhead</h3>
+        <p>
+          By constantly checking the current state, changes to the 
+          <code>location.hash</code> is detected. The polling interval is 
+          a compromise between computational overhead and accuracy. The 
+          default polling interval is 500 milliseconds. It may be adjusted
+          to your specific needs by issuing the following code:
+        </p>
+
+        <pre>
+
+    &lt;script&gt;
+      jQuery.observeHashChange({interval: 1000}); // seting the polling interval
+                                                  // to 1 second.
+    &lt;/script&gt;
+        </pre>
+
+        <h3>Lost events</h3>
+        <p>
+          When change events occur in a higher frequency than the polling 
+          interval, some change events may not be detected. This effect may be
+          minimized, by reducing the polling interval while increasing the
+          computational overhead. Please note, that the setInterval-based
+          approach used in the plugin may never be as accurate as the built-in
+          browser support.
+        </p>
+      </section>
+      <section id="license">
+        <h2>License</h2>
+        <pre>
+
+    Copyright (c) 2009, Gregor Schmidt, Finn GmbH
+
+    Permission is hereby granted, free of charge, to any person obtaining a
+    copy of this software and associated documentation files (the "Software"),
+    to deal in the Software without restriction, including without limitation
+    the rights to use, copy, modify, merge, publish, distribute, sublicense,
+    and/or sell copies of the Software, and to permit persons to whom the
+    Software is furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included in
+    all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+    FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+    DEALINGS IN THE SOFTWARE.
+        </pre>
+      </section>
+    </article>
+    <aside id="hashcontainer">
+      <details>
+        <legend>Current hash in location bar:</legend><br />
+        <code id="currenthash"></code>
+      </details>
+    </aside>
+  </div>
 </body>
 </html>
