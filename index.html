@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <title>jQuery.observeHashChange.js</title>
-  <!--[if lte IE 8]>
+<!--[if lte IE 8]>
   <script>
     document.createElement("header");
     document.createElement("nav");
@@ -12,23 +12,35 @@
     document.createElement("aside");
     document.createElement("details");
   </script>
-  <![endif]-->
+  <style>
+    #hashcontainer, nav {
+      filter: alpha(opacity=80);
+    }
+  </style>
+<![endif]-->
+<!--[if IE 8]>
+  <style>
+    #hashcontainer, nav {
+      -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+    }
+  </style>
+<![endif]-->
 
   <style>
 header, nav, content, section, aside, details { display: block; }
 
 body {
-  background: #369;
+  background: #01C4FC;
   font-family: 'Trebuchet MS', Helvetica, Arial, sans-serif;
 }
 #page {
   max-width: 50em;
   min-width: 80%;
-  border: 2px solid #333;
+  border: 2px solid #E2E2E2;
   margin: 1em auto;
   padding: 1em;
   background: white;
-  color: #333;
+  color: #5F5F5F;
   position: relative;
 }
 
@@ -50,7 +62,7 @@ article section aside {
   position: fixed;
   bottom: 0.5em;
   right: 0;
-  background: #369;
+  background: #01C4FC;
   border: 2px solid white;
   margin: 1em;
   padding: 1em;
@@ -62,7 +74,7 @@ article section aside {
 
 nav {
   width: 7em;
-  background: #fc3;
+  background: #E2E2E2;
   border: 1px solid white;
   opacity: 0.8;
   position: fixed;
@@ -103,14 +115,14 @@ pre {
 }
 .console_output li {
   border-bottom: 1px solid #666;
-  color: #333;
+  color: #5F5F5F;
   margin: 0;
   padding: 0.2em;
   padding-left: 0.5em;
 }
 
 a {
-  color: #369;
+  color: #01C4FC;
   text-decoration: none;
   font-weight: bold;
   padding-left: 3px;
@@ -118,7 +130,7 @@ a {
 }
 a:hover, a:active, a:focus {
   color: white;
-  background: #369;
+  background: #01C4FC;
 }
   </style>
 
@@ -159,7 +171,7 @@ a:hover, a:active, a:focus {
       <small>
         Version 0.1 •
         2009-07-05 •
-        <a href="http://www.nach-vorne.eu/">Gregor Schmidt</a> •
+        <a href="http://www.finn.de/team/#g.schmidt">Gregor Schmidt</a> •
         <a href="http://www.finn.de/" title="Finnlabs • software architects">
           Finn GmbH
         </a>
@@ -300,15 +312,15 @@ a:hover, a:active, a:focus {
           You may always find the current version of the 
           <code>jquery.observeHashChange.js</code>-Plugin on 
           <a href="#todo" title="GitHub Project Page of jquery.observeHashChange.js">GitHub Project Page</a>.
-          <ul>
-            <li><a href="#todo">Minified JavaScript</a></li>
-            <li>
-              <a href="#todo">
-                Release Tarball including this example page
-              </a>
-            </li>
-          </ul>
         </p>
+        <ul>
+          <li><a href="#todo">Minified JavaScript</a></li>
+          <li>
+            <a href="#todo">
+              Release Tarball including this example page
+            </a>
+          </li>
+        </ul>
       </section>
       <section id="issues">
         <h2>Known Issues</h2>
