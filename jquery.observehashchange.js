@@ -21,14 +21,14 @@
  **/
 (function($) {
   $.fn.hashchange = function(fn) {
-    $(window).bind("hashchange", fn);
+    $(window).bind("jQuery.hashchange", fn);
     return this;
   };
 
   $.observeHashChange = function(options) {
     var opts = $.extend({}, $.observeHashChange.defaults, options);
-    if (window.onhashchange) {
-      nativeVersion(opts);
+    if (isHashChangeEventSupported()) {
+      nativeVersion();
     }
     else {
       setIntervalVersion(opts);
@@ -43,21 +43,19 @@
     interval : 500
   };
 
-  function nativeVersion(opts) {
-    locationHash = document.location.hash;
-    if (window.onhashchange != functionStore) {
-      fuctionStore = onhashchangeHandler(window.onhashchange);
-      window.onhashchange = functionStore;
-    }
+  function isHashChangeEventSupported() {
+    return typeof document.body.onhashchange !== 'undefined';
   }
 
-  function onhashchangeHandler(oldVersion) {
-    return function() {
-      var oldHash = locationHash;
-      locationHash = document.location.hash;
-      $(window).trigger("hashchange", {before: oldHash, after: locationHash});
-      return oldVersion.call(this, arguments);
-    };
+  function nativeVersion() {
+    locationHash = document.location.hash;
+    window.onhashchange = onhashchangeHandler;
+  }
+
+  function onhashchangeHandler(e, data) {
+    var oldHash = locationHash;
+    locationHash = document.location.hash;
+    $(window).trigger("jQuery.hashchange", {before: oldHash, after: locationHash});
   }
 
   function setIntervalVersion(opts) {
@@ -77,9 +75,9 @@
     if (locationHash != document.location.hash) {
       var oldHash = locationHash;
       locationHash = document.location.hash;
-      $(window).trigger("hashchange", {before: oldHash, after: locationHash});
+      $(window).trigger("jQuery.hashchange", {before: oldHash, after: locationHash});
     }
   }
 
-  $.observeHashChange();
+  $($.observeHashChange);
 })(jQuery);
