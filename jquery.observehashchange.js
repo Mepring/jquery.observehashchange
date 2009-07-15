@@ -44,7 +44,7 @@
   };
 
   function isHashChangeEventSupported() {
-    return typeof document.body.onhashchange !== 'undefined';
+    return typeof window.onhashchange !== 'undefined';
   }
 
   function nativeVersion() {
@@ -79,5 +79,5 @@
     }
   }
 
-  $($.observeHashChange);
+  $.observeHashChange();
 })(jQuery);
