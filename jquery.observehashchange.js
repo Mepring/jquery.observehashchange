@@ -1,4 +1,8 @@
 /**
+ *  jQuery.observeHashChange (Version: 1.0)
+ *
+ *  http://finnlabs.github.com/jquery.observehashchange/
+ *
  *  Copyright (c) 2009, Gregor Schmidt, Finn GmbH
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a
