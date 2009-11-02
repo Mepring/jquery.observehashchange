@@ -48,7 +48,7 @@
   };
 
   function isHashChangeEventSupported() {
-    return typeof window.onhashchange !== 'undefined';
+    return "onhashchange" in window;
   }
 
   function nativeVersion() {
